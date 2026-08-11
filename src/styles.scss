@@ -1,0 +1,80 @@
+/* Estilos globales — Sistema de Matrículas Lapreplus (Angular) */
+:root {
+  --color-primario: #0B2545;
+  --color-secundario: #13315C;
+  --color-acento: #C8102E;
+  --color-ok: #1B8A5A;
+  --color-alerta: #E0A500;
+  --color-texto: #1B1F23;
+  --color-borde: #D9DCE1;
+  --color-fondo: #F4F5F7;
+  --radio: 8px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+a { color: var(--color-secundario); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { color: var(--color-primario); margin: 0 0 .6rem; }
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radio);
+  padding: .5rem .9rem;
+  font-size: .9rem;
+  background: var(--color-secundario);
+  color: #fff;
+  transition: background .15s ease;
+}
+button:hover { background: var(--color-primario); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-peligro { background: var(--color-acento); }
+.btn-peligro:hover { background: #9c0c22; }
+.btn-secundario { background: #fff; color: var(--color-secundario); border: 1px solid var(--color-borde); }
+.btn-secundario:hover { background: #eef2f7; }
+
+input, select {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  font-size: .9rem;
+  background: #fff;
+}
+input:focus, select:focus { outline: 2px solid var(--color-secundario); outline-offset: -1px; }
+
+label { display: block; font-size: .82rem; font-weight: 600; margin-bottom: .25rem; color: var(--color-secundario); }
+.campo { margin-bottom: 1rem; }
+.error { color: var(--color-acento); font-size: .8rem; margin-top: .25rem; }
+
+.tarjeta {
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radio); overflow: hidden; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--color-borde); font-size: .88rem; }
+th { background: var(--color-secundario); color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #f7f9fc; }
+
+.badge { display: inline-block; padding: .15rem .5rem; border-radius: 999px; font-size: .72rem; font-weight: 600; }
+.badge-nivel { background: #e6eef8; color: var(--color-secundario); }
+
+.barra-superior { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.filtros { display: flex; gap: .6rem; align-items: end; flex-wrap: wrap; }
+.filtros .campo { margin-bottom: 0; min-width: 160px; }

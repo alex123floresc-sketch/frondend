@@ -1,6 +1,6 @@
 {
   "name": "academia-frontend",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Frontend Angular para el Sistema de matrículas - Lapreplus (migración desde Thymeleaf)",
   "scripts": {
     "ng": "ng",

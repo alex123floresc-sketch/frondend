@@ -33,8 +33,93 @@ export const routes: Routes = [
           import('./features/cursos/curso-form.component').then((m) => m.CursoFormComponent),
         canActivate: [authGuard],
         data: { roles: ['ROLE_ADMIN'] }
+      },
+
+      // Bloque 2: núcleo académico
+      {
+        path: 'alumnos',
+        loadComponent: () => import('./features/alumnos/alumnos-lista.component').then((m) => m.AlumnosListaComponent)
+      },
+      {
+        path: 'alumnos/nuevo',
+        loadComponent: () => import('./features/alumnos/alumno-form.component').then((m) => m.AlumnoFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+      {
+        path: 'alumnos/editar/:id',
+        loadComponent: () => import('./features/alumnos/alumno-form.component').then((m) => m.AlumnoFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+      {
+        path: 'alumnos/:id/expediente',
+        loadComponent: () =>
+          import('./features/alumnos/alumno-expediente.component').then((m) => m.AlumnoExpedienteComponent)
+      },
+
+      {
+        path: 'profesores',
+        loadComponent: () =>
+          import('./features/profesores/profesores-lista.component').then((m) => m.ProfesoresListaComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+      {
+        path: 'profesores/nuevo',
+        loadComponent: () =>
+          import('./features/profesores/profesor-form.component').then((m) => m.ProfesorFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'profesores/editar/:id',
+        loadComponent: () =>
+          import('./features/profesores/profesor-form.component').then((m) => m.ProfesorFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'profesores/:id',
+        loadComponent: () =>
+          import('./features/profesores/profesor-detalle.component').then((m) => m.ProfesorDetalleComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+
+      {
+        path: 'ciclos',
+        loadComponent: () => import('./features/ciclos/ciclos-lista.component').then((m) => m.CiclosListaComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'ciclos/nuevo',
+        loadComponent: () => import('./features/ciclos/ciclo-form.component').then((m) => m.CicloFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'ciclos/editar/:id',
+        loadComponent: () => import('./features/ciclos/ciclo-form.component').then((m) => m.CicloFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+
+      {
+        path: 'areas',
+        loadComponent: () => import('./features/areas/areas.component').then((m) => m.AreasComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+
+      {
+        path: 'pagos',
+        loadComponent: () => import('./features/pagos/pagos-lista.component').then((m) => m.PagosListaComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
       }
-      // A medida que migremos módulos, se agregan aquí: alumnos, matriculas, pagos, ...
+      // A medida que migremos módulos, se agregan aquí: horarios, asistencias, usuarios, ...
     ]
   },
   { path: '**', redirectTo: '' }

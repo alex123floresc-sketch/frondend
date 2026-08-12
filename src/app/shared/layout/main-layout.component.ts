@@ -53,8 +53,13 @@ export class MainLayoutComponent {
   private router = inject(Router);
 
   private items: ItemMenu[] = [
-    { ruta: '/cursos', etiqueta: 'Cursos' }
-    // Se irán agregando: Alumnos, Matrículas, Pagos, Profesores, etc.
+    { ruta: '/alumnos', etiqueta: 'Alumnos' },
+    { ruta: '/profesores', etiqueta: 'Profesores', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
+    { ruta: '/cursos', etiqueta: 'Cursos' },
+    { ruta: '/areas', etiqueta: 'Áreas', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
+    { ruta: '/ciclos', etiqueta: 'Ciclos', roles: ['ROLE_ADMIN'] },
+    { ruta: '/pagos', etiqueta: 'Pagos', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+    // Se irán agregando: Horarios, Asistencias, Usuarios, etc.
   ];
 
   menuVisible(): ItemMenu[] {

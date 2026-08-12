@@ -153,8 +153,57 @@ export const routes: Routes = [
         path: 'buscar',
         loadComponent: () =>
           import('./features/busqueda/busqueda-resultados.component').then((m) => m.BusquedaResultadosComponent)
+      },
+
+      // Bloque 3b: horarios, asistencias, horas docentes
+      {
+        path: 'horarios',
+        loadComponent: () => import('./features/horarios/horarios.component').then((m) => m.HorariosComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+      {
+        path: 'asistencias',
+        loadComponent: () => import('./features/asistencias/asistencia-hub.component').then((m) => m.AsistenciaHubComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_AUXILIAR'] }
+      },
+      {
+        path: 'asistencias/estudiantes',
+        loadComponent: () =>
+          import('./features/asistencias/asistencia-estudiantes.component').then((m) => m.AsistenciaEstudiantesComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_AUXILIAR'] }
+      },
+      {
+        path: 'asistencias/docentes',
+        loadComponent: () =>
+          import('./features/asistencias/asistencia-docentes.component').then((m) => m.AsistenciaDocentesComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_AUXILIAR'] }
+      },
+      {
+        path: 'asistencias/cursos',
+        loadComponent: () =>
+          import('./features/asistencias/asistencia-cursos-lista.component').then((m) => m.AsistenciaCursosListaComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_AUXILIAR'] }
+      },
+      {
+        path: 'asistencias/cursos/:id',
+        loadComponent: () =>
+          import('./features/asistencias/asistencia-cursos-escanear.component').then((m) => m.AsistenciaCursosEscanearComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_AUXILIAR'] }
+      },
+      {
+        path: 'horas-docentes',
+        loadComponent: () =>
+          import('./features/horas-docentes/horas-docentes.component').then((m) => m.HorasDocentesComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO', 'ROLE_AUXILIAR'] }
       }
-      // A medida que migremos módulos, se agregan aquí: horarios, asistencias, horas docentes, ...
+      // A medida que migremos módulos, se agregan aquí: resumen, reportes, configuración, ...
     ]
   },
   { path: '**', redirectTo: '' }

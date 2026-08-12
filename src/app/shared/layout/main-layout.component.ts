@@ -64,9 +64,12 @@ export class MainLayoutComponent {
     { ruta: '/areas', etiqueta: 'Áreas', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
     { ruta: '/ciclos', etiqueta: 'Ciclos', roles: ['ROLE_ADMIN'] },
     { ruta: '/pagos', etiqueta: 'Pagos', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
+    { ruta: '/horarios', etiqueta: 'Horarios', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
+    { ruta: '/asistencias', etiqueta: 'Asistencia', roles: ['ROLE_ADMIN', 'ROLE_AUXILIAR'] },
+    { ruta: '/horas-docentes', etiqueta: 'Horas docentes', roles: ['ROLE_ADMIN', 'ROLE_CAJERO', 'ROLE_AUXILIAR'] },
     { ruta: '/usuarios', etiqueta: 'Usuarios', roles: ['ROLE_ADMIN'] },
     { ruta: '/actividad', etiqueta: 'Historial', roles: ['ROLE_ADMIN'] }
-    // Se irán agregando: Horarios, Asistencias, Horas docentes, etc.
+    // Se irán agregando: resumen, reportes, configuración, etc.
   ];
 
   menuVisible(): ItemMenu[] {

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
@@ -11,7 +12,7 @@ interface ItemMenu {
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule],
   template: `
     <div class="contenedor">
       <aside class="sidebar">
@@ -25,7 +26,8 @@ interface ItemMenu {
 
       <div class="area-principal">
         <header class="cabecera">
-          <span class="usuario">{{ auth.usuario()?.nombre }}</span>
+          <input class="buscador" [(ngModel)]="q" (keyup.enter)="buscar()" placeholder="Buscar alumno, profesor, curso…" />
+          <a routerLink="/perfil" class="usuario">{{ auth.usuario()?.nombre }}</a>
           <button class="btn-secundario" (click)="salir()">Cerrar sesión</button>
         </header>
         <main class="contenido">
@@ -44,6 +46,7 @@ interface ItemMenu {
     nav a.activo { background: var(--color-acento); color: #fff; font-weight: 600; }
     .area-principal { flex: 1; display: flex; flex-direction: column; }
     .cabecera { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; padding: .75rem 1.5rem; background: #fff; border-bottom: 1px solid var(--color-borde); }
+    .buscador { flex: 1; max-width: 360px; margin-right: auto; }
     .usuario { font-weight: 600; color: var(--color-secundario); }
     .contenido { padding: 1.5rem; flex: 1; }
   `]
@@ -52,18 +55,28 @@ export class MainLayoutComponent {
   auth = inject(AuthService);
   private router = inject(Router);
 
+  q = '';
+
   private items: ItemMenu[] = [
     { ruta: '/alumnos', etiqueta: 'Alumnos' },
     { ruta: '/profesores', etiqueta: 'Profesores', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
     { ruta: '/cursos', etiqueta: 'Cursos' },
     { ruta: '/areas', etiqueta: 'Áreas', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
     { ruta: '/ciclos', etiqueta: 'Ciclos', roles: ['ROLE_ADMIN'] },
-    { ruta: '/pagos', etiqueta: 'Pagos', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
-    // Se irán agregando: Horarios, Asistencias, Usuarios, etc.
+    { ruta: '/pagos', etiqueta: 'Pagos', roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] },
+    { ruta: '/usuarios', etiqueta: 'Usuarios', roles: ['ROLE_ADMIN'] },
+    { ruta: '/actividad', etiqueta: 'Historial', roles: ['ROLE_ADMIN'] }
+    // Se irán agregando: Horarios, Asistencias, Horas docentes, etc.
   ];
 
   menuVisible(): ItemMenu[] {
     return this.items.filter((i) => !i.roles || this.auth.tieneRol(...i.roles));
+  }
+
+  buscar(): void {
+    if (this.q.trim()) {
+      this.router.navigate(['/buscar'], { queryParams: { q: this.q } });
+    }
   }
 
   salir(): void {

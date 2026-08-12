@@ -118,8 +118,43 @@ export const routes: Routes = [
         loadComponent: () => import('./features/pagos/pagos-lista.component').then((m) => m.PagosListaComponent),
         canActivate: [authGuard],
         data: { roles: ['ROLE_ADMIN', 'ROLE_CAJERO'] }
+      },
+
+      // Bloque 3a: usuarios, perfil, historial, búsqueda
+      {
+        path: 'usuarios',
+        loadComponent: () => import('./features/usuarios/usuarios-lista.component').then((m) => m.UsuariosListaComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'usuarios/nuevo',
+        loadComponent: () => import('./features/usuarios/usuario-form.component').then((m) => m.UsuarioFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'usuarios/editar/:id',
+        loadComponent: () => import('./features/usuarios/usuario-form.component').then((m) => m.UsuarioFormComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'perfil',
+        loadComponent: () => import('./features/perfil/perfil-form.component').then((m) => m.PerfilFormComponent)
+      },
+      {
+        path: 'actividad',
+        loadComponent: () => import('./features/actividad/actividad-lista.component').then((m) => m.ActividadListaComponent),
+        canActivate: [authGuard],
+        data: { roles: ['ROLE_ADMIN'] }
+      },
+      {
+        path: 'buscar',
+        loadComponent: () =>
+          import('./features/busqueda/busqueda-resultados.component').then((m) => m.BusquedaResultadosComponent)
       }
-      // A medida que migremos módulos, se agregan aquí: horarios, asistencias, usuarios, ...
+      // A medida que migremos módulos, se agregan aquí: horarios, asistencias, horas docentes, ...
     ]
   },
   { path: '**', redirectTo: '' }
